@@ -1,6 +1,6 @@
 # SQLBolt Lesson 1 – SELECT Queries 101
 
-This repository contains my completed exercises from [SQLBolt Lesson 1](https://sqlbolt.com/lesson/select_queries_intro).  
+This repository contains my completed exercises from [SQLBolt Lesson 1](https://sqlbolt.com/lesson/).  
 It demonstrates foundational SQL querying skills including `SELECT`, `WHERE`, `BETWEEN`, `LIKE`, `JOIN`, `ORDER BY`, and more.
 
 ## 🧠 What I Learned
