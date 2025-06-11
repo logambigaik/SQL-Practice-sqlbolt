@@ -24,6 +24,8 @@ It demonstrates foundational SQL querying skills including `SELECT`, `WHERE`, `B
 -- Find the title of each film
 SELECT Title FROM movies;
 
+![image](https://github.com/user-attachments/assets/ae00de3b-3360-4237-8fba-8b86ce8bc769)
+
 -- Find the director of each film
 SELECT Director FROM movies;
 
