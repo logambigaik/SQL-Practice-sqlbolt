@@ -6,45 +6,100 @@
   <title>SQLBolt Learning Summary</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
       padding: 20px;
-      background-color: #f9f9f9;
     }
-    h1, h2 {
-      color: #2c3e50;
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
     }
-    ul {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 5px;
-      list-style-type: disc;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    .accordion {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+      overflow: hidden;
     }
+
+    .accordion-header {
+      cursor: pointer;
+      padding: 18px 22px;
+      background-color: #2b6cb0;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s;
+    }
+
+    .accordion-header:hover {
+      background-color: #245991;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      background-color: #f1f5f9;
+      padding: 0 22px;
+    }
+
+    .accordion-content.open {
+      padding: 20px 22px;
+      max-height: 1000px;
+    }
+
+    .zoom-box {
+      margin: 10px 0;
+      padding: 16px;
+      background-color: #e2e8f0;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .zoom-box:hover {
+      transform: scale(1.02);
+      background-color: #dbeafe;
+    }
+
     pre {
-      background: #eef;
-      padding: 10px;
-      border-radius: 5px;
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 12px;
+      border-radius: 6px;
       overflow-x: auto;
     }
-    img {
-      max-width: 100%;
-      margin-top: 10px;
+
+    code {
+      font-family: 'Courier New', monospace;
     }
-    .queries {
-      margin-top: 30px;
+
+    .icon {
+      transition: transform 0.4s ease;
     }
-    details {
-      margin-top: 20px;
+
+    .icon.rotate {
+      transform: rotate(90deg);
     }
   </style>
 </head>
 <body>
-
-  <h1>What I Learnt from SQLBolt</h1>
-
-  <h2>Key Concepts</h2>
-  <ul>
+  
+   <h2>Key Concepts</h2>
+    
+    <ul>
     <li>Selecting specific columns from a table</li>
     <li>Filtering rows with <code>WHERE</code></li>
     <li>Using <code>BETWEEN</code>, <code>LIKE</code>, <code>NOT</code>, and <code>OFFSET</code></li>
@@ -53,89 +108,77 @@
     <li>Sorting results based on a column (e.g., rating)</li>
     <li>Handling duplicates with <code>DISTINCT</code></li>
   </ul>
+  
+  <div class="container">
+    <h1>SQLBolt Practice Exercises</h1>
 
-  <h2>📄 SQL Queries</h2>
-  <details>
-    <summary>Click to expand the full list of queries</summary>
-    <div class="queries">
-      <pre>-- Find the title of each film
-SELECT Title FROM movies;
-
--- Find the director of each film
-SELECT Director FROM movies;
-
--- Find the title and director of each film
-SELECT Title, Director FROM movies;
-
--- Find the title and year of each film
-SELECT Title, Year FROM movies;
-
--- Find all the information about each film
-SELECT * FROM movies;
-
--- Find the movie with a row id of 6
-SELECT * FROM movies WHERE Id = 6;
-
--- Find the movies released in the years between 2000 and 2010
-SELECT * FROM movies WHERE Year BETWEEN 2000 AND 2010;
-
--- Find the movies not released in the years between 2000 and 2010
-SELECT * FROM movies WHERE Year NOT BETWEEN 2000 AND 2010;
-
--- Find the first 5 Pixar movies and their release year
-SELECT Title, Year FROM movies LIMIT 5;
-
--- Find all the Toy Story movies
-SELECT * FROM movies WHERE Title LIKE 'Toy Story%';
-
--- Find all the movies directed by John Lasseter
-SELECT * FROM movies WHERE Director = 'John Lasseter';
-
--- Find all the movies (and director) not directed by John Lasseter
-SELECT * FROM movies WHERE Director <> 'John Lasseter';
-
--- Find all the WALL-* movies
-SELECT * FROM movies WHERE Title LIKE 'WALL-%';
-
--- List all directors of Pixar movies (alphabetically), without duplicates
-SELECT DISTINCT Director FROM movies;
-
--- List the last four Pixar movies released (most recent to least)
-SELECT Title, Year FROM movies
-ORDER BY Year DESC
-LIMIT 4;
-
--- List the first five Pixar movies sorted alphabetically
-SELECT Title, Year FROM movies
-ORDER BY Title ASC
-LIMIT 5;
-
--- List the next five Pixar movies sorted alphabetically
-SELECT Title, Year FROM movies
-ORDER BY Title ASC
-LIMIT 5 OFFSET 5;
-
--- Find the domestic and international sales for each movie
-SELECT Title, Domestic_sales, International_sales 
-FROM movies 
-JOIN Boxoffice ON movies.id = Boxoffice.movie_id;
-
--- Show movies that did better internationally than domestically
-SELECT Title, Domestic_sales, International_sales 
-FROM movies 
-JOIN Boxoffice ON movies.id = Boxoffice.movie_id 
-WHERE International_sales > Domestic_sales;
-
--- List all the movies by their ratings in descending order
-SELECT Title, Rating 
-FROM movies 
-JOIN Boxoffice ON movies.id = Boxoffice.movie_id 
-ORDER BY Rating DESC;</pre>
+    <!-- Section 1 -->
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        Lesson 1: SELECT Queries <span class="icon">▶</span>
+      </div>
+      <div class="accordion-content">
+        <div class="zoom-box">
+          <strong>Description:</strong> Learn how to retrieve data from a table using SELECT statements.
+        </div>
+        <div class="zoom-box">
+          <strong>SQL Query:</strong>
+          <pre><code>SELECT name, age FROM students WHERE age > 20;</code></pre>
+        </div>
+        <div class="zoom-box">
+          <strong>Output:</strong>
+          <pre><code>+----------+-----+
+| name     | age |
++----------+-----+
+| Alice    | 21  |
+| Johnson  | 23  |
++----------+-----+</code></pre>
+        </div>
+      </div>
     </div>
-  </details>
 
-  <h2>Screenshot</h2>
-  <img src="https://github.com/user-attachments/assets/ae00de3b-3360-4237-8fba-8b86ce8bc769" alt="SQLBolt Screenshot">
+    <!-- Section 2 -->
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        Lesson 2: Filtering Rows <span class="icon">▶</span>
+      </div>
+      <div class="accordion-content">
+        <div class="zoom-box">
+          <strong>Description:</strong> Use WHERE clauses to filter data.
+        </div>
+        <div class="zoom-box">
+          <strong>SQL Query:</strong>
+          <pre><code>SELECT * FROM employees WHERE department = 'Sales';</code></pre>
+        </div>
+        <div class="zoom-box">
+          <strong>Output:</strong>
+          <pre><code>+----+-----------+-------------+
+| id | name      | department  |
++----+-----------+-------------+
+| 1  | John Doe  | Sales       |
++----+-----------+-------------+</code></pre>
+        </div>
+      </div>
+    </div>
 
+    <!-- Add more sections as needed -->
+
+  </div>
+
+  <script>
+    function toggleAccordion(header) {
+      const icon = header.querySelector(".icon");
+      const content = header.nextElementSibling;
+      const isOpen = content.classList.contains("open");
+
+      document.querySelectorAll(".accordion-content").forEach(c => c.classList.remove("open"));
+      document.querySelectorAll(".icon").forEach(i => i.classList.remove("rotate"));
+
+      if (!isOpen) {
+        content.classList.add("open");
+        icon.classList.add("rotate");
+      }
+    }
+  </script>
 </body>
 </html>
