@@ -162,6 +162,95 @@
     </div>
 
     <!-- Add more sections as needed -->
+    <!-- Section 3 -->
+<div class="accordion">
+  <div class="accordion-header" onclick="toggleAccordion(this)">
+    Find all the WALL-* movies <span class="icon">▶</span>
+  </div>
+  <div class="accordion-content">
+    <div class="zoom-box">
+      <strong>Description:</strong> Retrieve all movies with titles that start with "WALL-".
+    </div>
+    <div class="zoom-box">
+      <strong>SQL Query:</strong>
+      <pre><code>SELECT * FROM movies WHERE Title LIKE 'WALL-%';</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- Section 4 -->
+<div class="accordion">
+  <div class="accordion-header" onclick="toggleAccordion(this)">
+    List the next five Pixar movies alphabetically <span class="icon">▶</span>
+  </div>
+  <div class="accordion-content">
+    <div class="zoom-box">
+      <strong>Description:</strong> Display the 6th to 10th Pixar movies sorted by title.
+    </div>
+    <div class="zoom-box">
+      <strong>SQL Query:</strong>
+      <pre><code>SELECT Title, Year FROM movies
+ORDER BY Title ASC
+LIMIT 5 OFFSET 5;</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- Section 5 -->
+<div class="accordion">
+  <div class="accordion-header" onclick="toggleAccordion(this)">
+    Find the domestic and international sales for each movie <span class="icon">▶</span>
+  </div>
+  <div class="accordion-content">
+    <div class="zoom-box">
+      <strong>Description:</strong> Combine data from movies and box office to show sales figures.
+    </div>
+    <div class="zoom-box">
+      <strong>SQL Query:</strong>
+      <pre><code>SELECT Title, Domestic_sales, International_sales 
+FROM movies 
+JOIN Boxoffice ON movies.id = Boxoffice.movie_id;</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- Section 6 -->
+<div class="accordion">
+  <div class="accordion-header" onclick="toggleAccordion(this)">
+    Show movies that performed better internationally <span class="icon">▶</span>
+  </div>
+  <div class="accordion-content">
+    <div class="zoom-box">
+      <strong>Description:</strong> List movies where international sales exceeded domestic sales.
+    </div>
+    <div class="zoom-box">
+      <strong>SQL Query:</strong>
+      <pre><code>SELECT Title, Domestic_sales, International_sales 
+FROM movies 
+JOIN Boxoffice ON movies.id = Boxoffice.movie_id 
+WHERE International_sales > Domestic_sales;</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- Section 7 -->
+<div class="accordion">
+  <div class="accordion-header" onclick="toggleAccordion(this)">
+    List all movies by ratings (highest to lowest) <span class="icon">▶</span>
+  </div>
+  <div class="accordion-content">
+    <div class="zoom-box">
+      <strong>Description:</strong> Join with box office data and sort all movies by rating.
+    </div>
+    <div class="zoom-box">
+      <strong>SQL Query:</strong>
+      <pre><code>SELECT Title, Rating 
+FROM movies 
+JOIN Boxoffice ON movies.id = Boxoffice.movie_id 
+ORDER BY Rating DESC;</code></pre>
+    </div>
+  </div>
+</div>
 
   </div>
 
