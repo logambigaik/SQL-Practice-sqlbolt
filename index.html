@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SQLBolt Learning Summary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    ul {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      list-style-type: disc;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    pre {
+      background: #eef;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    img {
+      max-width: 100%;
+      margin-top: 10px;
+    }
+    .queries {
+      margin-top: 30px;
+    }
+    details {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>What I Learnt from SQLBolt</h1>
+
+  <h2>Key Concepts</h2>
+  <ul>
+    <li>Selecting specific columns from a table</li>
+    <li>Filtering rows with <code>WHERE</code></li>
+    <li>Using <code>BETWEEN</code>, <code>LIKE</code>, <code>NOT</code>, and <code>OFFSET</code></li>
+    <li>Ordering and limiting results</li>
+    <li>Performing <code>JOIN</code> operations</li>
+    <li>Sorting results based on a column (e.g., rating)</li>
+    <li>Handling duplicates with <code>DISTINCT</code></li>
+  </ul>
+
+  <h2>📄 SQL Queries</h2>
+  <details>
+    <summary>Click to expand the full list of queries</summary>
+    <div class="queries">
+      <pre>-- Find the title of each film
+SELECT Title FROM movies;
+
+-- Find the director of each film
+SELECT Director FROM movies;
+
+-- Find the title and director of each film
+SELECT Title, Director FROM movies;
+
+-- Find the title and year of each film
+SELECT Title, Year FROM movies;
+
+-- Find all the information about each film
+SELECT * FROM movies;
+
+-- Find the movie with a row id of 6
+SELECT * FROM movies WHERE Id = 6;
+
+-- Find the movies released in the years between 2000 and 2010
+SELECT * FROM movies WHERE Year BETWEEN 2000 AND 2010;
+
+-- Find the movies not released in the years between 2000 and 2010
+SELECT * FROM movies WHERE Year NOT BETWEEN 2000 AND 2010;
+
+-- Find the first 5 Pixar movies and their release year
+SELECT Title, Year FROM movies LIMIT 5;
+
+-- Find all the Toy Story movies
+SELECT * FROM movies WHERE Title LIKE 'Toy Story%';
+
+-- Find all the movies directed by John Lasseter
+SELECT * FROM movies WHERE Director = 'John Lasseter';
+
+-- Find all the movies (and director) not directed by John Lasseter
+SELECT * FROM movies WHERE Director <> 'John Lasseter';
+
+-- Find all the WALL-* movies
+SELECT * FROM movies WHERE Title LIKE 'WALL-%';
+
+-- List all directors of Pixar movies (alphabetically), without duplicates
+SELECT DISTINCT Director FROM movies;
+
+-- List the last four Pixar movies released (most recent to least)
+SELECT Title, Year FROM movies
+ORDER BY Year DESC
+LIMIT 4;
+
+-- List the first five Pixar movies sorted alphabetically
+SELECT Title, Year FROM movies
+ORDER BY Title ASC
+LIMIT 5;
+
+-- List the next five Pixar movies sorted alphabetically
+SELECT Title, Year FROM movies
+ORDER BY Title ASC
+LIMIT 5 OFFSET 5;
+
+-- Find the domestic and international sales for each movie
+SELECT Title, Domestic_sales, International_sales 
+FROM movies 
+JOIN Boxoffice ON movies.id = Boxoffice.movie_id;
+
+-- Show movies that did better internationally than domestically
+SELECT Title, Domestic_sales, International_sales 
+FROM movies 
+JOIN Boxoffice ON movies.id = Boxoffice.movie_id 
+WHERE International_sales > Domestic_sales;
+
+-- List all the movies by their ratings in descending order
+SELECT Title, Rating 
+FROM movies 
+JOIN Boxoffice ON movies.id = Boxoffice.movie_id 
+ORDER BY Rating DESC;</pre>
+    </div>
+  </details>
+
+  <h2>Screenshot</h2>
+  <img src="https://github.com/user-attachments/assets/ae00de3b-3360-4237-8fba-8b86ce8bc769" alt="SQLBolt Screenshot">
+
+</body>
+</html>
