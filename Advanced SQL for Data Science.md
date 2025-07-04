@@ -154,7 +154,19 @@ SELECT artist,
 FROM streams 
 WHERE artist = 'Lady Gaga';
 ```
-
 <img src="https://github.com/user-attachments/assets/dff3990a-c13b-4e8b-bad0-5d6dfc0579a9" width=220 />
+
+
+### 
+
+```sql
+SELECT artist,
+   week,
+   streams_millions,
+   LAG(streams_millions, 1, 0) 
+   OVER (ORDER BY week ) previous_week_streams 
+FROM streams 
+WHERE artist = 'Lady Gaga';
+```
 
 
