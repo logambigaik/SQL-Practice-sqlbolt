@@ -57,7 +57,9 @@ he CAST() function is used to convert the value of an expression into another da
 
 It has the following syntax:
 
-```SQL SELECT CAST(expr AS type-name); ```
+```SQL 
+SELECT CAST(expr AS type-name);
+```
 
 * From the bakery table, we want to determine the final price of each order after the discount is applied. However, the value of each discount is currently stored as TEXT, like '1.00 off', so you will need to convert them into numerical values.
 * Utilize CAST() to convert the values of the discount column into REAL values. Select the item_name column and the total cost of each order, after applying the discount for each item.
@@ -70,7 +72,9 @@ FROM bakery;
 
 #### Date and Time Functions I
 
-```SQL SELECT DATETIME('2020-09-01 17:38:22'), DATETIME('now'), DATETIME('now', 'localtime'); ```
+```SQL 
+SELECT DATETIME('2020-09-01 17:38:22'), DATETIME('now'), DATETIME('now', 'localtime');
+```
 
 <img src="https://github.com/user-attachments/assets/a116d753-816a-400a-884b-1e62314c1112" width=220 />
 
@@ -81,7 +85,9 @@ The following modifiers can be used to shift the date backwards to a specified p
 * <b>start of month</b>: shifts the date to the beginning of the current month.
 * <b>start of day</b>: shifts the date to the beginning of the current day.
 
-```sql SELECT DATE('2005-09-15', 'start of month'); ```
+```sql 
+SELECT DATE('2005-09-15', 'start of month');
+```
 
 The following modifiers add a specified amount to the date and time of the time string.
 
@@ -92,12 +98,16 @@ The following modifiers add a specified amount to the date and time of the time 
 - +-N minutes : offsets the minute
 - +-N seconds : offsets the second
 
-```SQL SELECT DATETIME('2020-02-10', 'start of month', '-1 day', '+7 hours'); ```
+```SQL 
+SELECT DATETIME('2020-02-10', 'start of month', '-1 day', '+7 hours');
+```
 <img src="https://github.com/user-attachments/assets/c4250b23-f7a8-4bc7-8639-fe6105528747" width=220 />
 
 * For each order in the bakery table, the order will be ready for pick up 2 days after the order is made, at 7:00AM, 7 days a week. The order will always be ready 2 days after the order, no matter what time of day the order was made.
 
-```SQL SELECT DATETIME(order_date, 'start of day', '+2 days', '+7 hours')
+```SQL
+SELECT DATETIME(order_date, 'start of day', '+2 days', '+7 hours')
 FROM bakery;
 ```
+
 <img src = "https://github.com/user-attachments/assets/cef62037-ba1c-4154-a602-95c5f9d26610" width=220 />
