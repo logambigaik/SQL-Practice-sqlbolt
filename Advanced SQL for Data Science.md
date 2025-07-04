@@ -199,4 +199,28 @@ WHERE
 ```
 <img src="https://github.com/user-attachments/assets/1302e651-0c90-45a4-ba75-e26fff04af45" width=220 />
 
+#### LEAD
+LAG to examine how an artist’s weekly streams and chart position changed. Your final query should have looked something like this:
+
+```sql
+SELECT
+   artist,
+   week,
+   streams_millions,
+   streams_millions - LAG(streams_millions, 1, streams_millions) OVER ( 
+      PARTITION BY artist
+      ORDER BY week 
+   ) AS 'streams_millions_change',
+   chart_position,
+   LAG(chart_position, 1, chart_position) OVER ( 
+      PARTITION BY artist
+      ORDER BY week 
+) - chart_position AS 'chart_position_change'
+FROM
+   streams
+WHERE 
+   artist = 'Lady Gaga';
+```
+
+We are going to modify this to use LEAD, which looks to future rows, instead of LAG, which looks to previous rows.
 
