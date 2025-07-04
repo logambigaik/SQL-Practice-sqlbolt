@@ -8,7 +8,7 @@ FROM social_media
 WHERE username = 'instagram'
 GROUP BY username;
 ```
-![image](https://github.com/user-attachments/assets/ecb7d4f3-2cca-45ae-837b-7ea5156f641b)
+<img src="https://github.com/user-attachments/assets/ecb7d4f3-2cca-45ae-837b-7ea5156f641b" width=120 />
 
 #### With windows function:
 
@@ -22,4 +22,4 @@ FROM social_media
 WHERE username = 'instagram'
 ;
 ```
-![image](https://github.com/user-attachments/assets/46a86d59-3ff4-4d94-9204-63f6b17b6920)
+<img src="https://github.com/user-attachments/assets/46a86d59-3ff4-4d94-9204-63f6b17b6920" width=120 />
