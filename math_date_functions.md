@@ -111,3 +111,73 @@ FROM bakery;
 ```
 
 <img src = "https://github.com/user-attachments/assets/cef62037-ba1c-4154-a602-95c5f9d26610" width=220 />
+
+
+#### STRFTIME(format, timestring, modifier1, modifier2, ...)
+
+The substitutions to extract each part of the date and time are the following:
+
+* %Y returns the year (YYYY)
+* %m returns the month (01-12)
+* %d returns the day of month (01-31)
+* %H returns the hour (00-23)
+* %M returns the minute (00-59)
+* %S returns the second (00-59)
+
+For example, to extract the month and year of the current date,
+
+```sql
+SELECT STRFTIME('%m %Y', 'now');
+SELECT STRFTIME('%d', 'now');
+
+
+SELECT strftime('%d', order_date) AS 'order_day',
+  COUNT(*) 
+FROM bakery 
+GROUP BY 1
+ORDER BY 2 DESC;
+
+```
+<img src="https://github.com/user-attachments/assets/629cebdf-6960-4ff5-8e0a-7447862a71f1" width=220 >
+
+## Climate change project
+
+* Write a query that returns the state, year, tempf or tempc, and running_avg_temp (in either Celsius or Fahrenheit) for each state.
+
+  <b> Table Name: state_climate </b>
+
+  ``` sql
+  SELECT state, 
+       year, 
+       tempf, 
+       tempc, 
+       AVG(tempc) OVER(
+        PARTITION BY state 
+        ORDER BY year
+       )AS 'running_avg_temp'
+FROM state_climate;
+  ```
+<img src="https://github.com/user-attachments/assets/417f012a-28cf-442c-9ccd-5c30508c7c36" width=220 />
+
+* Write a query that returns state, year, tempf or tempc, and the lowest & highest temperature (lowest/highest_temp) for each state.
+
+``` sql
+SELECT state, 
+       year, 
+       tempc, 
+       AVG(tempc) OVER(
+        PARTITION BY state 
+        ORDER BY year
+       )AS 'running_avg_temp',
+       FIRST_VALUE (tempc) OVER(
+        PARTITION BY state 
+        ORDER BY year
+       )AS 'lowest_temp',
+      LAST_VALUE (tempc) OVER(
+        PARTITION BY state 
+        ORDER BY year
+       )AS 'lowest_temp'
+FROM state_climate
+where state='Alabama'
+AND year='1903';
+```
