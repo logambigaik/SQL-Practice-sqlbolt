@@ -163,13 +163,18 @@ WHERE artist = 'Lady Gaga';
  * default (optional, what to replace default null values with)
  
 ```sql
-SELECT artist,
+SELECT
+   artist,
    week,
    streams_millions,
-   LAG(streams_millions, 1, 0) 
-   OVER (ORDER BY week ) previous_week_streams 
-FROM streams 
-WHERE artist = 'Lady Gaga';
+   streams_millions - LAG(streams_millions, 1, streams_millions) OVER ( 
+      ORDER BY week 
+   ) streams_millions_change
+FROM
+   streams 
+WHERE
+   artist = 'Lady Gaga';
 ```
+<img src="https://github.com/user-attachments/assets/7b5396b6-aa13-4cbf-a5ba-d4e388d2ebfb" width=220 />
 
 
