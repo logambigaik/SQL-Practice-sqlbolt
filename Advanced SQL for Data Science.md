@@ -60,6 +60,9 @@ WHERE username = 'instagram';
 
 - And lastly, this is all coming from table social_media where the username is instagram.
 
+
+### AVG, SUM and count with windows functions
+
 ```sql
 SELECT month,
   change_in_followers,
