@@ -85,11 +85,19 @@ The following modifiers can be used to shift the date backwards to a specified p
 
 The following modifiers add a specified amount to the date and time of the time string.
 
-' +-N years': offsets the year
-' +-N months': offsets the month
-' +-N days': offsets the day
-' +-N hours': offsets the hour
-' +-N minutes': offsets the minute
-' +-N seconds': offsets the second
+- +-N years   : offsets the year
+- +-N months  : offsets the month
+- +-N days    : offsets the day
+- +-N hours   : offsets the hour
+- +-N minutes : offsets the minute
+- +-N seconds : offsets the second
 
+```SQL SELECT DATETIME('2020-02-10', 'start of month', '-1 day', '+7 hours'); ```
+<img src="https://github.com/user-attachments/assets/c4250b23-f7a8-4bc7-8639-fe6105528747" width=220 />
 
+* For each order in the bakery table, the order will be ready for pick up 2 days after the order is made, at 7:00AM, 7 days a week. The order will always be ready 2 days after the order, no matter what time of day the order was made.
+
+```SQL SELECT DATETIME(order_date, 'start of day', '+2 days', '+7 hours')
+FROM bakery;
+```
+<img src = "https://github.com/user-attachments/assets/cef62037-ba1c-4154-a602-95c5f9d26610" width=220 />
