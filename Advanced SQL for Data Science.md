@@ -176,6 +176,7 @@ WHERE
 ```
 <img src="https://github.com/user-attachments/assets/7b5396b6-aa13-4cbf-a5ba-d4e388d2ebfb" width=220 />
 
+<b> LAG compares with the previous row while LEAD compares with the next row.</b>
 
 ```sql
 SELECT
