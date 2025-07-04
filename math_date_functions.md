@@ -52,9 +52,44 @@ FROM guesses;
 
 <img src="https://github.com/user-attachments/assets/e5a4fcaa-1f93-4a81-b894-3b136dad3315" width=220 />
 
+#### Cast
+he CAST() function is used to convert the value of an expression into another data type.
+
+It has the following syntax:
+
+```SQL SELECT CAST(expr AS type-name); ```
+
+* From the bakery table, we want to determine the final price of each order after the discount is applied. However, the value of each discount is currently stored as TEXT, like '1.00 off', so you will need to convert them into numerical values.
+* Utilize CAST() to convert the values of the discount column into REAL values. Select the item_name column and the total cost of each order, after applying the discount for each item.
+
+```SQL
+SELECT item_name, (price - CAST(discount AS REAL)) * quantity
+FROM bakery;
+```
+<img src="https://github.com/user-attachments/assets/e5d91537-c227-4583-81f4-7e2f0a4042dc" width=220 >
+
+#### Date and Time Functions I
+
+```SQL SELECT DATETIME('2020-09-01 17:38:22'), DATETIME('now'), DATETIME('now', 'localtime'); ```
+
+<img src="https://github.com/user-attachments/assets/a116d753-816a-400a-884b-1e62314c1112" width=220 />
 
 
+The following modifiers can be used to shift the date backwards to a specified part of the date.
+
+* <b>start of year</b>: shifts the date to the beginning of the current year.
+* <b>start of month</b>: shifts the date to the beginning of the current month.
+* <b>start of day</b>: shifts the date to the beginning of the current day.
+
+```sql SELECT DATE('2005-09-15', 'start of month'); ```
+
+The following modifiers add a specified amount to the date and time of the time string.
+
+' +-N years': offsets the year
+' +-N months': offsets the month
+' +-N days': offsets the day
+' +-N hours': offsets the hour
+' +-N minutes': offsets the minute
+' +-N seconds': offsets the second
 
 
-
-"
