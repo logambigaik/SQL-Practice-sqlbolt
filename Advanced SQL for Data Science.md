@@ -223,3 +223,68 @@ WHERE
 
 We are going to modify this to use LEAD, which looks to future rows, instead of LAG, which looks to previous rows.
 
+```SQL
+SELECT
+   artist,
+   week,
+   streams_millions,
+   LEAD(streams_millions, 1) OVER (
+      PARTITION BY artist
+      ORDER BY week
+   ) - streams_millions AS 'streams_millions_change',
+   chart_position,
+   chart_position - LEAD(chart_position, 1) OVER ( 
+      PARTITION BY artist
+      ORDER BY week 
+) AS 'chart_position_change'
+FROM
+   streams;
+```
+
+<img src="https://github.com/user-attachments/assets/e07eefd9-b221-457c-b2e1-a12425527330" width=220 />
+
+
+#### ROW_NUMBER
+
+* The most straight-forward way to order our results is by using the ROW_NUMBER function which adds a sequential integer number to each row.
+
+* Adding a ROW_NUMBER to each row can be useful for seeing where in your result set the row falls.
+
+```sql
+SELECT 
+   ROW_NUMBER() OVER (
+      ORDER BY streams_millions
+   ) AS 'row_num', 
+   artist, 
+   week,
+   streams_millions
+FROM
+   streams;
+```
+<img src="https://github.com/user-attachments/assets/89de8813-6cb9-4936-b8a4-86b28c2d798e" width=220 />
+
+<B>What happens for the row_num when the streams_millions are equal?</B>
+
+<I>ANSWER: The rows continue to increase even when the values are equal because it is solely based on the number of the row in our results set.
+
+An example of this is when 'row_num' is 7 and 8 and the streams_million is 26.3 for both.</I>
+
+#### Modify our query to return the results with row_num = 1 being the most streams.
+
+(Add DESC after our ORDER BY statement. Descending returns the values from highest to lowest.)
+
+```sql
+SELECT 
+   ROW_NUMBER() OVER (
+      ORDER BY streams_millions DESC
+   ) AS 'row_num', 
+   artist, 
+   week,
+   streams_millions
+FROM
+   streams;
+```
+<img src="https://github.com/user-attachments/assets/dd97db19-368a-4c90-b1eb-88211958b3cf" width=220 />
+
+
+
