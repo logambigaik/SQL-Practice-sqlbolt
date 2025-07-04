@@ -1,4 +1,4 @@
-## Advanced SQL for Data Science.md
+## Windows function
 * GROUP BY and SUM reduce the number of rows in your query results because they are combining or grouping rows.
 * Window functions, on the other hand, allow you to maintain the values of your original table while displaying grouped or summative information alongside in another column.
 
