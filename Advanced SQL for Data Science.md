@@ -10,7 +10,6 @@ GROUP BY username;
 ```
 <img src="https://github.com/user-attachments/assets/ecb7d4f3-2cca-45ae-837b-7ea5156f641b" width=220 />
 
-
 ### GROUP BY with month and username
 
 ```sql
