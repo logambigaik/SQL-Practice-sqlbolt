@@ -2,11 +2,11 @@
 
 ### Math operators:
 
-- + addition
-- - subtraction
-- / division
-- * multiplication
-- % - modulo(returns the remainder)
+- addition (+)
+- subtraction (-)
+- division (/)
+- multiplication (*)
+- modulo(% returns the remainder)
 
 #### Math functions:
 
