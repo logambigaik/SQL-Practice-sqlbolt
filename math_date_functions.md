@@ -147,7 +147,7 @@ ORDER BY 2 DESC;
   <b> Table Name: state_climate </b>
 
   ``` sql
-  SELECT state, 
+   SELECT state, 
        year, 
        tempf, 
        tempc, 
@@ -155,8 +155,9 @@ ORDER BY 2 DESC;
         PARTITION BY state 
         ORDER BY year
        )AS 'running_avg_temp'
-FROM state_climate;
+   FROM state_climate;
   ```
+
 <img src="https://github.com/user-attachments/assets/417f012a-28cf-442c-9ccd-5c30508c7c36" width=220 />
 
 * Write a query that returns state, year, tempf or tempc, and the lowest & highest temperature (lowest/highest_temp) for each state.
@@ -181,3 +182,4 @@ FROM state_climate
 where state='Alabama'
 AND year='1903';
 ```
+
