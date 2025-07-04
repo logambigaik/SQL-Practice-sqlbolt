@@ -176,5 +176,3 @@ WHERE
    artist = 'Lady Gaga';
 ```
 <img src="https://github.com/user-attachments/assets/7b5396b6-aa13-4cbf-a5ba-d4e388d2ebfb" width=220 />
-
-
