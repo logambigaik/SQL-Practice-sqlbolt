@@ -95,3 +95,63 @@ FROM social_media;
 ```
 <img src="https://github.com/user-attachments/assets/c954584d-3876-47fa-8523-fdd1260527ff" width=220>
 
+```sql
+SELECT username, month,
+    -- change_in_followers,
+    SUM(change_in_followers) 
+    OVER(PARTITION BY username 
+    ORDER BY month) 
+    'running_total_follower_change',
+   AVG(change_in_followers) 
+    OVER(PARTITION BY username 
+    ORDER BY month) 
+    'running_avg_follower_change' 
+FROM social_media
+where username='instagram'
+;```
+
+<img src="https://github.com/user-attachments/assets/639b717d-37f5-42e1-bd8f-8d12b0a61983" width=220 />
+
+### FIRST_VALUE and LAST_VALUE in Windows function:
+- FIRST_VALUE() returns the first value in an ordered set of values.
+- LAST_VALUE() returns the last value in an ordered set of values.
+
+```sql
+SELECT username, 
+month,
+FIRST_VALUE(posts) 
+OVER (PARTITION BY username 
+ORDER BY posts RANGE BETWEEN UNBOUNDED PRECEDING AND 
+      UNBOUNDED FOLLOWING)
+ AS fewest_posts,
+ LAST_VALUE(posts) 
+OVER (PARTITION BY username 
+ORDER BY posts
+RANGE BETWEEN UNBOUNDED PRECEDING AND 
+      UNBOUNDED FOLLOWING)
+ AS most_posts
+FROM social_media
+WHERE username = 'instagram'
+group by month,username 
+;
+```
+<img src="https://github.com/user-attachments/assets/5f1ea509-d096-42e2-bb48-4da72563f042" width=220 />
+
+
+### LAG or LEAD
+
+-  can use in order to access information from a row at a specified offset which comes before (LAG) or after (LEAD) the current row.
+- This means that by using LAG or LEAD you can access any row before or after the current row, which can be very useful in calculating the difference between the current and adjacent row.
+
+```sql
+SELECT artist,
+   week,
+   streams_millions,
+   LAG(streams_millions, 1, 0) 
+   OVER (ORDER BY week ) previous_week_streams 
+FROM streams 
+WHERE artist = 'Lady Gaga';
+```
+<img src="https://github.com/user-attachments/assets/dff3990a-c13b-4e8b-bad0-5d6dfc0579a9" width=220 />
+
+
