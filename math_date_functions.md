@@ -24,3 +24,10 @@
 
 - <b>bakery</b>: table storing information about orders made at a local bakery
 - <b>guesses</b>: table storing the values of a guessing game where the guessed value closest to a number wins
+
+```SQL
+SELECT  * 
+FROM bakery
+LIMIT 5;
+```
+<img src="https://github.com/user-attachments/assets/e0710e81-8826-4de0-bdcc-baca5f0764c4 width=220 />
