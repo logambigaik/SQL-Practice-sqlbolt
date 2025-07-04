@@ -30,4 +30,4 @@ SELECT  *
 FROM bakery
 LIMIT 5;
 ```
-<img src="https://github.com/user-attachments/assets/e0710e81-8826-4de0-bdcc-baca5f0764c4 width=220 />
+<img src="https://github.com/user-attachments/assets/e0710e81-8826-4de0-bdcc-baca5f0764c4" width=220 />
