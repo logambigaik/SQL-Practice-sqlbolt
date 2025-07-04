@@ -1,4 +1,4 @@
-### Advanced SQL for Data Science.md
+## Advanced SQL for Data Science.md
 * GROUP BY and SUM reduce the number of rows in your query results because they are combining or grouping rows.
 * Window functions, on the other hand, allow you to maintain the values of your original table while displaying grouped or summative information alongside in another column.
 
@@ -10,7 +10,7 @@ GROUP BY username;
 ```
 <img src="https://github.com/user-attachments/assets/ecb7d4f3-2cca-45ae-837b-7ea5156f641b" width=120 />
 
-#### With windows function:
+### With windows function:
 
 ```sql
 SELECT username, 
