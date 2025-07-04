@@ -6,8 +6,7 @@
 - subtraction
 / division
 * multiplication
-% - modulo
- (returns the remainder)
+% - modulo(returns the remainder)
 
 #### Math functions:
 
@@ -23,5 +22,5 @@
 
 #### Following tables containing mock data:
 
-<b>bakery</b>: table storing information about orders made at a local bakery
-<b>guesses</b>: table storing the values of a guessing game where the guessed value closest to a number wins
+- <b>bakery</b>: table storing information about orders made at a local bakery
+- <b>guesses</b>: table storing the values of a guessing game where the guessed value closest to a number wins
