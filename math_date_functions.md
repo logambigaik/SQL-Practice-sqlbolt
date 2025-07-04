@@ -20,7 +20,7 @@
 * TIME(): returns the time portion of a time string
 * STRFTIME(): returns a formatted date
 
-#### Following tables containing mock data:
+#### The following tables contain mock data and can be used for practice,
 
 - <b>bakery</b>: table storing information about orders made at a local bakery
 - <b>guesses</b>: table storing the values of a guessing game where the guessed value closest to a number wins
