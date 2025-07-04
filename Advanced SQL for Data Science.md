@@ -39,15 +39,22 @@ group by month,username
 <img src="https://github.com/user-attachments/assets/46a86d59-3ff4-4d94-9204-63f6b17b6920" width=120 />
 
 ### Window Function Syntax
+```sql
+SELECT month,
+  change_in_followers,
+  SUM(change_in_followers) OVER (
+    ORDER BY month
+  ) AS running_total
+FROM social_media
+WHERE username = 'instagram';
+```
 - SELECT month, change_in_followers: Same as usual, selecting the columns.
 - SUM(change_in_followers): Here is our aggregate function to find the SUM of our chosen column.
 >> OVER: This is the clause that designates SUM as a window function.
 
 >> ORDER BY month: Here we declare what we would like our window function to do.
 
->> This window function is taking the sum of followers for each month.
-
->> So for each month, the window function adds the current month’s change_in_followers to our running total.
+<b>This window function is taking the sum of followers for each month.So for each month, the window function adds the current month’s change_in_followers to our running total.</b>
 
 >> Then name the running total column 'running_total'.
 - And lastly, this is all coming from table social_media where the username is instagram.
