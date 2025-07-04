@@ -59,3 +59,20 @@ WHERE username = 'instagram';
 <b>This window function is taking the sum of followers for each month.So for each month, the window function adds the current month’s change_in_followers to our running total.</b>
 
 - And lastly, this is all coming from table social_media where the username is instagram.
+
+```sql
+SELECT month,
+  change_in_followers,
+  SUM(change_in_followers) OVER (
+    ORDER BY month
+  ) AS running_total,
+  AVG(change_in_followers) OVER(
+    ORDER BY month
+  )AS running_avg,
+  COUNT(change_in_followers) OVER(
+    ORDER BY month
+  )AS runing_count
+FROM social_media
+WHERE username = 'instagram';
+```
+<img src="https://github.com/user-attachments/assets/f954ef2c-173e-4950-877b-da99ce39ece9" width=120/>
