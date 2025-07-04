@@ -156,9 +156,12 @@ WHERE artist = 'Lady Gaga';
 ```
 <img src="https://github.com/user-attachments/assets/dff3990a-c13b-4e8b-bad0-5d6dfc0579a9" width=220 />
 
+##### LAG takes up to three arguments:
 
-### 
-
+ * column (required)
+ * offset (optional, default 1 row offset)
+ * default (optional, what to replace default null values with)
+ 
 ```sql
 SELECT artist,
    week,
