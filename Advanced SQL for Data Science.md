@@ -54,7 +54,8 @@ WHERE username = 'instagram';
 
 >> ORDER BY month: Here we declare what we would like our window function to do.
 
+>> Then name the running total column 'running_total'.
+
 <b>This window function is taking the sum of followers for each month.So for each month, the window function adds the current month’s change_in_followers to our running total.</b>
 
->> Then name the running total column 'running_total'.
 - And lastly, this is all coming from table social_media where the username is instagram.
