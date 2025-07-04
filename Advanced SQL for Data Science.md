@@ -50,6 +50,7 @@ SELECT month,
 FROM social_media
 WHERE username = 'instagram';
 ```
+
 - SELECT month, change_in_followers: Same as usual, selecting the columns.
 - SUM(change_in_followers): Here is our aggregate function to find the SUM of our chosen column.
 >> OVER: This is the clause that designates SUM as a window function.
@@ -108,7 +109,8 @@ SELECT username, month,
     'running_avg_follower_change' 
 FROM social_media
 where username='instagram'
-;```
+;
+```
 
 <img src="https://github.com/user-attachments/assets/639b717d-37f5-42e1-bd8f-8d12b0a61983" width=220 />
 
@@ -152,6 +154,7 @@ SELECT artist,
 FROM streams 
 WHERE artist = 'Lady Gaga';
 ```
+
 <img src="https://github.com/user-attachments/assets/dff3990a-c13b-4e8b-bad0-5d6dfc0579a9" width=220 />
 
 
