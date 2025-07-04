@@ -286,5 +286,59 @@ FROM
 ```
 <img src="https://github.com/user-attachments/assets/dd97db19-368a-4c90-b1eb-88211958b3cf" width=220 />
 
+#### RANK
+If you were to modify your ROW_NUMBER query to use RANK instead, it might appear to be exactly the same at first glance. But if you look more closely, you can see that RANK will follow standard ranking rules so that when two values are the same, they will have the same rank whereas with ROW_NUMBER they would not.
+
+##### RANK with PARTITION :
+
+```sql
+SELECT 
+   RANK() OVER (
+      PARTITION BY week
+      ORDER BY streams_millions DESC
+   ) AS 'rank', 
+   artist, 
+   week,
+   streams_millions
+FROM
+   streams;
+```
+<img src="https://github.com/user-attachments/assets/5ad323aa-a926-4b51-9177-31a9f615ac2b" width=220 />
+
+
+#### NTILE
+NTILE and this can be used to find quartiles, quintiles or whatever ntile your data-driven heart desires.
+
+NTILE allows you to break your data into roughly equal groups, based on what ntile you’d like: so if you were using quartile, it would divide the data into four groups (quarters).
+
+When using NTILE you are required to provide a bucket, which represents the number of groups you’d like your data broken down into: NTILE(4) would be four “buckets” which would represent quartiles.
+
+```sql
+SELECT 
+   NTILE(5) OVER (
+      ORDER BY streams_millions DESC
+   ) AS 'weekly_streams_group', 
+   artist, 
+   week,
+   streams_millions
+FROM
+   streams;
+```
+
+```sql
+SELECT 
+   NTILE(4) OVER (
+      PARTITION BY week
+      ORDER BY streams_millions DESC
+   ) AS 'quartile', 
+   artist, 
+   week,
+   streams_millions
+FROM
+   streams;
+```
+<img src='https://github.com/user-attachments/assets/16252b60-48a5-483d-b588-132331439125' width=220>
+
+
 
 
