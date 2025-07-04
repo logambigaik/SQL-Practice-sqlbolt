@@ -8,7 +8,7 @@ FROM social_media
 WHERE username = 'instagram'
 GROUP BY username;
 ```
-<img src="https://github.com/user-attachments/assets/ecb7d4f3-2cca-45ae-837b-7ea5156f641b" width=120 />
+<img src="https://github.com/user-attachments/assets/ecb7d4f3-2cca-45ae-837b-7ea5156f641b" width=220 />
 
 
 ### GROUP BY with month and username
@@ -23,7 +23,7 @@ WHERE username = 'instagram'
 group by month,username 
 ;
 ```
-<img src="https://github.com/user-attachments/assets/46a86d59-3ff4-4d94-9204-63f6b17b6920" width=120 />
+<img src="https://github.com/user-attachments/assets/46a86d59-3ff4-4d94-9204-63f6b17b6920" width=220 />
 
 
 ### Above query with windows function:
@@ -38,7 +38,7 @@ FROM social_media
 WHERE username = 'instagram'
 ;
 ```
-<img src="https://github.com/user-attachments/assets/46a86d59-3ff4-4d94-9204-63f6b17b6920" width=120 />
+<img src="https://github.com/user-attachments/assets/46a86d59-3ff4-4d94-9204-63f6b17b6920" width=220 />
 
 ### Window Function Syntax 
 ```sql
@@ -80,4 +80,18 @@ SELECT month,
 FROM social_media
 WHERE username = 'instagram';
 ```
-<img src="https://github.com/user-attachments/assets/f954ef2c-173e-4950-877b-da99ce39ece9" width=120/>
+<img src="https://github.com/user-attachments/assets/f954ef2c-173e-4950-877b-da99ce39ece9" width=220/>
+
+### PARTITION BY:
+
+```sql
+SELECT username, month,
+    change_in_followers,
+    SUM(change_in_followers) 
+    OVER(PARTITION BY username 
+    ORDER BY month) 
+    'running_total_follower_change'
+FROM social_media;
+```
+<img src="https://github.com/user-attachments/assets/c954584d-3876-47fa-8523-fdd1260527ff" width=220>
+
