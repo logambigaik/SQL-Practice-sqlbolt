@@ -3,6 +3,8 @@ We could use SQL to calculate the percent change between each question, but itâ€
 
 <img src="https://github.com/user-attachments/assets/da97a487-b893-4bfa-bcd0-31c874a579da" width=220 />
 
+* Count the number of distinct user_idâ€˜s for each value of modal_text. 
+  
 ```sql
 SELECT modal_text, 
    COUNT(DISTINCT user_id)
