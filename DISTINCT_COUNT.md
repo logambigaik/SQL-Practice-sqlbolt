@@ -14,7 +14,7 @@ ORDER BY user_id;
 ```
 <img src="https://github.com/user-attachments/assets/0d1694a4-8e1c-4f78-875d-dccebd6a3252" width=220 />
 
-• We can use a CASE statement within our COUNT() aggregate so that we only count user_ids whose ab_group is equal to ‘control’:
+• We can use a CASE statement within our COUNT() aggregate so that we only count user_ids whose ab_group is equal to ‘control’ AND VARIANT:
 
 ```sql
 SELECT modal_text,
@@ -28,6 +28,7 @@ FROM onboarding_modals
 GROUP BY 1
 ORDER BY 1;
 ```
-<img src='https://github.com/user-attachments/assets/c058bbac-64d0-480a-b694-bafbb33a06bb' width=220>
+<img src='https://github.com/user-attachments/assets/752fe327-0606-4c58-a27e-7989e9f5a232' width=220>
+
 
  
