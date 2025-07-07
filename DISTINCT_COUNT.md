@@ -128,3 +128,59 @@ GROUP BY question;
 
 <img src="https://github.com/user-attachments/assets/8e758433-9d2a-4b13-bcbd-44d57fb6d34d" width=220>
 
+
+* Project query:
+
+```sql
+SELECT 
+    question, 
+    COUNT(DISTINCT user_id) AS 'total_user',
+    (COUNT(DISTINCT user_id) * 100.0 / 
+     (SELECT COUNT(DISTINCT user_id) FROM survey)) AS percent_user
+FROM survey
+GROUP BY question;
+
+SELECT *
+FROM quiz
+LIMIT 5;
+
+SELECT *
+FROM home_try_on
+LIMIT 5;
+
+SELECT *
+FROM purchase
+LIMIT 5;
+
+SELECT DISTINCT q.user_id,
+   h.user_id IS NOT NULL AS 'is_home_try_on',
+   h.number_of_pairs,
+   p.user_id IS NOT NULL AS 'is_purchase'
+FROM quiz q
+LEFT JOIN home_try_on h
+   ON q.user_id = h.user_id
+LEFT JOIN purchase p
+   ON p.user_id = q.user_id
+LIMIT 10;
+
+
+SELECT DISTINCT q.user_id,
+       h.user_id IS NOT NULL AS is_home_try_on,
+       h.number_of_pairs,
+       p.user_id IS NOT NULL AS is_purchase
+FROM quiz q
+LEFT JOIN home_try_on h ON q.user_id = h.user_id
+LEFT JOIN purchase p ON p.user_id = q.user_id
+LIMIT 10;
+
+WITH funnel AS (
+  SELECT q.user_id, h.number_of_pairs, h.user_id IS NOT NULL AS is_home_try_on, p.user_id IS NOT NULL AS is_purchase
+  FROM quiz q
+  LEFT JOIN home_try_on h ON q.user_id = h.user_id
+  LEFT JOIN purchase p ON p.user_id = q.user_id
+)
+SELECT * FROM funnel LIMIT 10;
+
+```
+<img src="https://github.com/user-attachments/assets/b57d2a81-28e8-43cb-9dda-72cc8f3f26c8" width=220 >
+<img src="https://github.com/user-attachments/assets/abb98134-3a04-490c-a46a-15e11b0da223" width=220>
