@@ -562,3 +562,5 @@ churn_rates AS (
 SELECT * FROM churn_rates
 ORDER BY segment, month;
 ```
+<img src="https://github.com/user-attachments/assets/0c327064-d8b6-4630-9c1d-ce49c50b3b3d" width=220>
+
