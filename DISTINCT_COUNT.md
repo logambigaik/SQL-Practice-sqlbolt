@@ -61,3 +61,28 @@ LEFT JOIN purchase p
 	ON p.user_id = c.user_id
 LIMIT 50;
 ```
+<img src="https://github.com/user-attachments/assets/8f6e2469-f304-447f-a8dd-e9de49458813" width=220 />
+
+
+```sql
+WITH funnels AS (
+  SELECT DISTINCT b.browse_date,
+     b.user_id,
+     c.user_id IS NOT NULL AS 'is_checkout',
+     p.user_id IS NOT NULL AS 'is_purchase'
+  FROM browse AS 'b'
+  LEFT JOIN checkout AS 'c'
+    ON c.user_id = b.user_id
+  LEFT JOIN purchase AS 'p'
+    ON p.user_id = c.user_id)
+SELECT COUNT(*) AS 'num_browse',
+       SUM(is_checkout) AS 'num_checkout',
+       SUM(is_purchase) AS 'num_purchase'
+FROM funnels;
+```
+
+<img src="https://github.com/user-attachments/assets/f95bbe08-134a-42be-af3f-c0a1b0d35e9d" width=220>
+
+
+
+
