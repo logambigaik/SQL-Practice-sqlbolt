@@ -30,5 +30,17 @@ ORDER BY 1;
 ```
 <img src='https://github.com/user-attachments/assets/752fe327-0606-4c58-a27e-7989e9f5a232' width=220>
 
+#### LEFT JOIN
 
+```sql
+ SELECT * 
+ from browse b 
+ LEFT JOIN checkout c 
+   ON b.user_id = c.user_id
+ LEFT JOIN purchase p
+   ON p.user_id = c.user_id
+ LIMIT 50;
+```
+<img src="https://github.com/user-attachments/assets/73609144-a1a6-4bc1-a770-c6bfcb378f59" width=220 />
  
+
