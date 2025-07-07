@@ -43,4 +43,21 @@ ORDER BY 1;
 ```
 <img src="https://github.com/user-attachments/assets/73609144-a1a6-4bc1-a770-c6bfcb378f59" width=220 />
  
+* Instead of selecting all columns using *, let’s select these four:
+    - DISTINCT b.browse_date
+    - b.user_id
+    - c.user_id IS NOT NULL AS 'is_checkout'
+    - p.user_id IS NOT NULL AS 'is_purchase' 
 
+```SQL
+SELECT DISTINCT b.browse_date,
+	b.user_id,
+  c.user_id IS NOT NULL as is_checkout,
+  p.user_id IS NOT NULL as is_purchase
+FROM browse b
+LEFT JOIN checkout c
+	ON c.user_id = b.user_id
+LEFT JOIN purchase p
+	ON p.user_id = c.user_id
+LIMIT 50;
+```
