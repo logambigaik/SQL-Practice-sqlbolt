@@ -84,5 +84,47 @@ FROM funnels;
 <img src="https://github.com/user-attachments/assets/f95bbe08-134a-42be-af3f-c0a1b0d35e9d" width=220>
 
 
+```sql
+WITH funnels AS (
+  SELECT DISTINCT b.browse_date,
+     b.user_id,
+     c.user_id IS NOT NULL AS 'is_checkout',
+     p.user_id IS NOT NULL AS 'is_purchase'
+  FROM browse AS 'b'
+  LEFT JOIN checkout AS 'c'
+    ON c.user_id = b.user_id
+  LEFT JOIN purchase AS 'p'
+    ON p.user_id = c.user_id)
+SELECT browse_date,
+   COUNT(*) AS 'num_browse',
+   SUM(is_checkout) AS 'num_checkout',
+   SUM(is_purchase) AS 'num_purchase',
+   1.0 * SUM(is_checkout) / COUNT(user_id) AS 'browse_to_checkout',
+   1.0 * SUM(is_purchase) / SUM(is_checkout) AS 'checkout_to_purchase'
+FROM funnels
+GROUP BY browse_date
+ORDER BY browse_date;
+```
+<img src="https://github.com/user-attachments/assets/c04bf080-89e0-4098-84c1-1de22ca3c638" width=220 />
 
+
+* We divide the number of people completing each step by the number of people completing the previous step:
+
+	> Question Number	Percent Completing this Question
+	>	1		100%
+	>	2		? %
+	>	3		? %
+	>	4		? %
+	>	5		? %
+```sql
+SELECT 
+    question, 
+    COUNT(DISTINCT user_id) AS 'total_user',
+    (COUNT(DISTINCT user_id) * 100.0 / 
+     (SELECT COUNT(DISTINCT user_id) FROM survey)) AS percent_user
+FROM survey
+GROUP BY question;
+```
+
+<img src="https://github.com/user-attachments/assets/8e758433-9d2a-4b13-bcbd-44d57fb6d34d" width=220>
 
