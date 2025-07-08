@@ -163,6 +163,7 @@ FROM page_visits
 WHERE user_id = 10069
 GROUP BY user_id;
 ```
+
 <img src="https://github.com/user-attachments/assets/26fe2175-de2e-4029-bf96-f13b7d8a040c" width=220 >
 
 
@@ -188,7 +189,7 @@ AND ft.first_touch_at = pv.timestamp
 
 • The diagram  illustrates the JOIN we need to get the UTM parameters of each first touch:
 
-<img src="https://github.com/user-attachments/assets/3219e9db-38dc-4af6-9b1f-e9c602b8cbd9" width=380>
+<img src="https://github.com/user-attachments/assets/3219e9db-38dc-4af6-9b1f-e9c602b8cbd9" width=550>
 
 
 • On the left is page_visits (just three columns from the original table). We get the UTM parameters from there.
