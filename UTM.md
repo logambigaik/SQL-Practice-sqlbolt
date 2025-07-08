@@ -235,3 +235,103 @@ WHERE LT.user_id = 10069;
 ```
 <img src="https://github.com/user-attachments/assets/8d09efcd-0dd8-45ec-b0d5-7e6fa9c6ea6e" width=300>
 
+```sql
+/*
+Here's the first-touch query, in case you need it
+*/
+-- 1. How many distinct campaigns does CoolTShirts use?
+SELECT COUNT(DISTINCT utm_campaign) AS num_campaigns
+FROM page_visits;
+
+-- 2. How many distinct sources does CoolTShirts use?
+SELECT COUNT(DISTINCT utm_source) AS num_sources
+FROM page_visits;
+
+-- 3. Which source is used for each campaign? (Mapping sources to campaigns)
+SELECT DISTINCT utm_source, utm_campaign
+FROM page_visits
+WHERE utm_source IS NOT NULL AND utm_campaign IS NOT NULL;
+
+-- 4. What pages are on the CoolTShirts website? (Distinct page names)
+
+SELECT DISTINCT page_name
+FROM page_visits;
+
+WITH last_touch AS (
+  SELECT user_id,
+         MAX(timestamp) AS last_touch_at
+  FROM page_visits
+  GROUP BY user_id
+)
+
+-- 4. How many last touches is each campaign responsible for?
+-- Use the last-touch attribution: find each user’s last visit, then group by utm_campaign and count:
+
+WITH last_touch AS (
+  SELECT user_id,
+         MAX(timestamp) AS last_touch_at
+  FROM page_visits
+  GROUP BY user_id
+)
+
+SELECT pv.utm_campaign,
+       COUNT(*) AS num_last_touches
+FROM last_touch lt
+JOIN page_visits pv
+  ON lt.user_id = pv.user_id
+ AND lt.last_touch_at = pv.timestamp
+GROUP BY pv.utm_campaign
+ORDER BY num_last_touches DESC;
+
+-- 5. How many visitors make a purchase?
+-- Count distinct user_id who visited the page named 4 - purchase:
+SELECT COUNT(DISTINCT user_id) AS num_purchasers
+FROM page_visits
+WHERE page_name = '4 - purchase';
+
+-- 6. How many last touches on the purchase page is each campaign responsible for?
+-- Find last touches specifically on the purchase page and group by campaign:
+
+WITH last_touch AS (
+  SELECT user_id,
+         MAX(timestamp) AS last_touch_at
+  FROM page_visits
+  GROUP BY user_id
+)
+
+SELECT pv.utm_campaign,
+       COUNT(*) AS last_touch_purchases
+FROM last_touch lt
+JOIN page_visits pv
+  ON lt.user_id = pv.user_id
+ AND lt.last_touch_at = pv.timestamp
+WHERE pv.page_name = '4 - purchase'
+GROUP BY pv.utm_campaign
+ORDER BY last_touch_purchases DESC;
+
+--  re-invest in 5 campaigns
+
+WITH last_touch AS (
+  SELECT user_id,
+         MAX(timestamp) AS last_touch_at
+  FROM page_visits
+  GROUP BY user_id
+)
+
+SELECT pv.utm_campaign,
+       COUNT(*) AS last_touch_purchases
+FROM last_touch lt
+JOIN page_visits pv
+  ON lt.user_id = pv.user_id
+ AND lt.last_touch_at = pv.timestamp
+WHERE pv.page_name = '4 - purchase'
+GROUP BY pv.utm_campaign
+ORDER BY last_touch_purchases DESC
+LIMIT 5;
+```
+
+<img src="https://github.com/user-attachments/assets/a88c331d-d793-4525-b68f-16ca05329ed1" width=500>
+<img src="https://github.com/user-attachments/assets/9e827370-29d4-4e20-8a99-a7a62d55b0c8" width=500>
+
+
+
