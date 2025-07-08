@@ -197,3 +197,41 @@ AND ft.first_touch_at = pv.timestamp
 
 • On the left is page_visits (just three columns from the original table). We get the UTM parameters from there.
 • On the right is first_touch (the result of the GROUP BY query). We get the first touches from there.
+
+
+```sql
+WITH first_touch AS (
+    SELECT user_id,
+       MIN(timestamp) AS 'first_touch_at'
+    FROM page_visits
+    GROUP BY user_id)
+SELECT ft.user_id,
+   ft.first_touch_at,
+   pv.utm_source
+FROM first_touch AS 'ft'
+JOIN page_visits AS 'pv'
+   ON ft.user_id = pv.user_id
+   AND ft.first_touch_at = pv.timestamp;
+```
+<img src="https://github.com/user-attachments/assets/22faad18-6131-42a0-9300-e3188e1a265a" width=300>
+
+* Using the query above as a guide, write the LAST-touch attribution query and run it.Make sure June’s last touch at 08:13:01 is still there!
+Add a WHERE clause for user_id = 10069 to your existing query.
+
+```SQL
+WITH last_touch AS (
+    SELECT user_id,
+        MAX(timestamp) AS 'last_touch_at'
+    FROM page_visits
+    GROUP BY user_id)
+SELECT lt.user_id,
+    lt.last_touch_at,
+    pv.utm_source
+FROM last_touch AS 'lt'
+JOIN page_visits AS 'pv'
+    ON lt.user_id = pv.user_id
+    AND lt.last_touch_at = pv.timestamp
+WHERE LT.user_id = 10069;
+```
+<img src="https://github.com/user-attachments/assets/8d09efcd-0dd8-45ec-b0d5-7e6fa9c6ea6e" width=300>
+
