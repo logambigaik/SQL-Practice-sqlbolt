@@ -57,7 +57,8 @@ June’s first interaction with **CoolTShirts.com** is recorded in the `page_vis
 June’s **first touch** — her first exposure to the brand — is attributed to **Buzzfeed**, since that was the utm_source recorded when she landed on the site.
 
 * Find June’s rows in the table! Select all columns from the page_visits table, using a WHERE clause with:
-  >> user_id equals 10069 and utm_source equals 'buzzfeed'.
+
+  user_id equals 10069 and utm_source equals 'buzzfeed'.
 
   ```sql
    SELECT *
