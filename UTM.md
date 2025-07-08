@@ -7,8 +7,13 @@ database describing their page visit.
 You can see a common schema for a “page visits” table below and at this link.
 
   • user_id - A unique identifier for each visitor to a page
+  
   • timestamp - The time at which the visitor came to the page
+  
   • page_name - The title of the section of the page that was visited
+  
   • utm_source - Identifies which touchpoint sent the traffic (e.g. google, email, or facebook)
+  
   • utm_medium - Identifies what type of link was used (e.g. cost-per-click or email)
+  
   • utm_campaign - Identifies the specific ad or email blast (e.g. retargetting-ad or weekly-newsletter)
