@@ -330,10 +330,10 @@ ORDER BY last_touch_purchases DESC
 LIMIT 5;
 ```
 
-<img src="https://github.com/user-attachments/assets/a88c331d-d793-4525-b68f-16ca05329ed1" width=500>
+<img src="https://github.com/user-attachments/assets/a88c331d-d793-4525-b68f-16ca05329ed1" width=400>
 
 
-<img src="https://github.com/user-attachments/assets/9e827370-29d4-4e20-8a99-a7a62d55b0c8" width=500>
+<img src="https://github.com/user-attachments/assets/9e827370-29d4-4e20-8a99-a7a62d55b0c8" width=400>
 
 
 
