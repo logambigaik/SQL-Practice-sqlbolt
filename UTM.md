@@ -64,8 +64,10 @@ June’s **first touch** — her first exposure to the brand — is attributed t
    SELECT *
    FROM page_visits
    WHERE user_id=10069 AND utm_source='buzzfeed';
- ```
+  ```
+
 <img src="https://github.com/user-attachments/assets/401f9aaa-50a0-43ae-9f27-40082561771f" width=220 />
+
 
 ## 🧾 Last Touch Example – June's Purchase Journey
 
