@@ -247,3 +247,18 @@ WHERE special_instructions LIKE '%phrase%';
 
 
 ```
+
+```sql
+SELECT
+  ROUND(watch_duration_in_minutes,0) as duration,
+  COUNT(*) as count
+FROM watch_history
+GROUP BY duration
+ORDER BY duration ASC;
+
+SELECT user_id, SUM(amount) AS amount
+FROM payments
+WHERE status = 'paid'
+GROUP BY user_id
+ORDER BY amount DESC;x
+```
