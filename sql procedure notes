@@ -1,0 +1,10 @@
+-- Syntax for creating procedure in postgresql
+CREATE OR REPLACE PROCEDURE pr_name (p_name varchar, p_age int)
+language plpgsql
+as $$
+declare 
+  variable
+begin
+  procedure body - all logics
+end;
+$$
