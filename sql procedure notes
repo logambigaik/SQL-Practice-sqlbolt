@@ -1,4 +1,5 @@
 -- Syntax for creating procedure in postgresql
+```plsql
 CREATE OR REPLACE PROCEDURE pr_name (p_name varchar, p_age int)
 language plpgsql
 as $$
@@ -8,3 +9,4 @@ begin
   procedure body - all logics
 end;
 $$
+```
