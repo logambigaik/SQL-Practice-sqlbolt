@@ -23,11 +23,13 @@ end;
 
 ```sql
 --  mysql syntac for creating procedure
-create or replace procedure pr_name(@p_name varchar, @p_age int)
+
+delimiter $$
+create or alter procedure pr_name(@p_name varchar, @p_age int)
 as
   declare @v_name varchar,
           @v_age int;
 begin
   procedure body - all logics
-end;
-
+end $$
+```
